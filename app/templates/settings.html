@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<div class="log mt-7 flex item-center justify-center width-100">
+  <div class="flex-col text-slate-300">
+    <div>
+<!--  <img
+      width="200"
+      height="200"
+      src="{% static 'assets/backgroundtwo.jpg' %}"
+      alt=""
+    />   --> 
+ 
+
+{% if user_profile.profileimg %}
+    <img
+      width="400"
+      src="{{user_profile.profileimg.url}}"
+      alt=""
+      class="img-cover"
+    />
+
+{% else %}
+     <div>
+      <img
+      width="400"
+      src="{% static 'assets/backgroundtwo.jpg' %}"
+      alt=""
+    />
+    <p >Default profile image</p>
+     </div>   
+ 
+{% endif %} 
+    </div>
+    <form class="form flex-col mt-5" action="" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <a href="{% url 'index' %}" class="text-slate-400">>> return</a>
+      <p>account settings for <b>{{user.username}}</b></p>
+      <label for=""><b>profile image</b></label>
+      <div class="flex-input">
+        <input type="file" placeholder="" name="image" />
+      </div>
+      <button type="submit">>> update</button>
+    </form>
+  </div>
+  </div>
+  {% endblock %}
+</div>

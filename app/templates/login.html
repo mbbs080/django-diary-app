@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<div class="mt-7 flex item-center justify-center">
+  <form
+    class="form flex-col space-y-2 text-center item-center justify-center"
+    action=""
+    method="POST"
+  >
+    {% csrf_token %} {% for message in messages %}
+    <h5>{{message}}</h5>
+    {% endfor %}
+    <b class="text-slate-500">AUTH</b>
+    <div>
+      <input
+        class="mb-1 p-1 bg-slate-300 rounded-md focus:outline-none"
+        type="text"
+        placeholder="usename"
+        name="username"
+      />
+    </div>
+    <div>
+      <input
+        class="p-1 bg-slate-300 rounded-md focus:outline-none"
+        type="password"
+        placeholder="password"
+        name="password"
+      />
+    </div>
+    <div>
+      <button type="submit" class="text-slate-300">Sign in</button>
+      <p class="text-slate-300">or</p>
+      <a href="{% url 'register' %}" class="text-cyan-500">sign up</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

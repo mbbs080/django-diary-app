@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<div class="flex item-center justify-center mt-7">
+  <form class="flex-col" action="" method="POST">
+    {% csrf_token %}
+    <div>
+      {% for message in messages %}
+      <h3>{{message}}</h3>
+      {% endfor %}
+    </div>
+    <a
+      href="{% url 'index' %}"
+      class="flex item-center justify-center text-slate-300"
+      >return</a
+    >
+    <div class="flex flex-col space-y-4 my-4">
+      <input
+        type="text"
+        placeholder="title"
+        name="title"
+        class="p-1 bg-slate-300 rounded-md border-cyan-500 border-2 focus:outline-none focus:border-cyan-300"
+      />
+      <textarea
+        placeholder="content"
+        name="body"
+        rows="4"
+        cols="50"
+        class="textarea bg-slate-300 border-cyan-500 border-2 rounded-md focus:border-cyan-300 p-1 focus:outline-none"
+      ></textarea>
+    </div>
+    <button type="submit" class="text-cyan-500 font-bold flex text-right">
+      add diary
+    </button>
+  </form>
+</div>
+{% endblock %}

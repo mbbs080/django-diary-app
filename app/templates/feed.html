@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<div class="feef-cover">
+  <div class="feed text-slate-300">
+    <div class="flex justify-center align-center bg-slate-600">
+      <a href="{% url 'index' %}" class="font-bold">return</a>
+    </div>
+    <div class="flex justify-center align-center">
+      <div class="mt-5 flex justify-center align-center">
+        <div class="mx-2">
+          <div class="text-center text-cyan-500 font-semibold">
+            <p class="text-cyan-300">@{{user_profile.user.username}}</p>
+            <h2 class="text-xl font-thin">List of all your posts</h2>
+            {% if user_post_length == 0 %}
+            <h1>No posts</h1>
+            {% elif user_post_length == 1 %}
+            <h1 class="underline">{{ user_post_length }} post</h1>
+            {% else %}
+            <h1 class="underline">{{ user_post_length }} posts</h1>
+          </div>
+          <div class="grid grid-cols-1 gap-4 mt-10 md:grid-cols-2 mx-2 mb-5">
+            {% endif %} {% for post in page_obj%}
+            <div class="bg-slate-500 py-2 px-3 leading-5 rounded-md max-w-md">
+              <b>@{{post.user}}</b>
+              <h4
+                class="bg-slate-600 text-left text-cyan-500 p-1 mt-1 border-slate-400 border-l-2"
+              >
+                <span class="font-thin text-xl">{{post.title}}</span>
+                <div class="mt-1 text-xs text-slate-400">
+                  <p>{{post.post_d}}</p>
+                  <p>at {{post.post_t}}</p>
+                </div>
+              </h4>
+              <p class="post-body mt-2 text-left">{{post.body}}</p>
+              <form action="/delete" method="POST">
+                {% csrf_token %}
+
+                <div class="text-left">
+                  <button
+                    class="bg-slate-600 mt-2 text-cyan-500 py-0.5 px-2 rounded-sm"
+                    value="{{post.id}}"
+                    name="item"
+                    type="submit"
+                  >
+                    delete
+                  </button>
+                </div>
+              </form>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="text-center text-cyan-500">{% include "pagination.html" %}</div>
+</div>
+{% endblock %}

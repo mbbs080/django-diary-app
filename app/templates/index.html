@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<section class="mx-auto">
+  <nav class="mx-auto bg-slate-800 p-3">
+    <ul class="flex item-center justify-center space-x-4">
+      <li class="nav-item">
+        <a class="text-sky-600 hover:text-sky-500" href="{% url 'adddiary' %}"
+          >Adddiary</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="text-sky-600 hover:text-sky-500" href="feed/{{user.username}}"
+          >Profile</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="text-sky-600 hover:text-sky-500" href="#">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="text-sky-600 hover:text-sky-500" href="{% url 'settings' %}"
+          >Settings</a
+        >
+      </li>
+      <li class="nav-item">
+        <a class="text-sky-600 hover:text-sky-500" href="{% url 'logout' %}"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </nav>
+  <div class="flex item-center justify-center p-2">
+    <h1 class="text-slate-500 text-base">Welcome <b>@{{user.username}}</b></h1>
+  </div>
+  <div class="flex item-center text-slate-300 justify-center p-2">
+    <h1 class="text-center">
+      >> You Can Now Create New Posts and Update Your Account
+    </h1>
+  </div>
+  <div class="flex item-center justify-center">
+    <img
+      width="500"
+      src="{{user_profile.profileimg.url}}"
+      alt=""
+      class="rounded-lg opacity-30"
+    />
+  </div>
+</section>
+{% endblock %}

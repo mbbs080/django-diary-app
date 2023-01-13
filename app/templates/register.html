@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static %} {% block pagecontent %}
+<div class="log flex justify-center align-center">
+  <form class="form mt-7 text-center" action="" method="POST">
+    {% csrf_token %}
+    <div class="text-slate-300">
+      {% for message in messages %}
+      <h5>{{message}}</h5>
+      {% endfor %}
+    </div>
+    <a href="{% url 'index' %}" class="text-slate-300">return</a>
+    <div class="flex-input mt-5">
+      <input
+        type="email"
+        placeholder="email"
+        name="email"
+        class="mb-1 p-1 bg-slate-300 rounded-md focus:outline-none"
+      />
+      <input
+        type="text"
+        placeholder="username"
+        name="username"
+        class="mb-1 p-1 bg-slate-300 rounded-md focus:outline-none"
+      />
+    </div>
+    <div class="flex justify-center align-center">
+      <input
+        type="password"
+        placeholder="password"
+        name="password"
+        class="mb-1 p-1 bg-slate-300 rounded-md"
+      />
+    </div>
+    <button type="submit" class="text-slate-300">Sign up</button>
+    <p class="text-slate-300">or</p>
+    <a href="{% url 'login' %}" class="text-cyan-500">sign in</a>
+  </form>
+</div>
+{% endblock %}
