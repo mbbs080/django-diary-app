@@ -44,10 +44,10 @@ def feed(request, pk):
     user_posts = Post.objects.filter(user=pk).order_by("-created_at")
     user_post_length = len(user_posts)
 
-    # >>>> pagination start
+    # >>>> Pagination start
     
     page_num = request.GET.get('page', 1)
-    paginator = Paginator(user_posts, 4) # one post per page
+    paginator = Paginator(user_posts, 4) # four posts per page
 
     try:
         page_obj = paginator.page(page_num) # to return the page as far as the page number is valid
@@ -56,7 +56,7 @@ def feed(request, pk):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages) # to deliver the last page if page is out of range
 
-    # >>>> pagination end
+    # >>>> Pagination end
 
     context = {
         'user_object': user_object,
